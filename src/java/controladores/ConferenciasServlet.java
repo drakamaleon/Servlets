@@ -33,9 +33,23 @@ public class ConferenciasServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
         request.getRequestDispatcher("home.jsp")
                 .forward(request, response);
+        }
+        
+        
+        String action = request.getParameter("action");
+        String nombre = request.getParameter("inputNombre");
+        String fecha = request.getParameter("inputFecha");
+        String desc = request.getParameter("comment");
+        if ("agregar".equals(action)){
+            //
+        }
+        if ("editar".equals(action)){
+            //
+        }
+        if ("eliminar".equals(action)){
+            //
         }
     }
 

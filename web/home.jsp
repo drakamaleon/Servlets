@@ -93,6 +93,9 @@
                 <div class="form-group">
                     <textarea class="form-control" rows="5" id="comment" placeholder="Algo que agregar..?"></textarea>
                 </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" id="action" name="inputCiudad" placeholder="Fecha de la conferencia">
+                </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>

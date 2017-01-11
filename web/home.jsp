@@ -22,7 +22,7 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="index.jsp">Inicio</a>
-          <a class="navbar-brand" href="home.jsp">Conferencias</a>
+          <a class="navbar-brand" href="Conferencia">Conferencias</a>
           <a class="navbar-brand" href="#">Asistentes</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">

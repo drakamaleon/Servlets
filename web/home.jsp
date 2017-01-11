@@ -51,8 +51,22 @@
             <td>Juan Perez</td>
             <td>Guayaquil</td>
             <td>0987961212</td>
-            <td><a href="#"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
-            <td><a href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
+            <td>
+                <form method="post" action="Conferencia">
+                    <div class="form-group">
+                      <input type="hidden" class="form-control" id="action" name="action" value="editar">
+                    </div>   
+                <button type="submit" class="btn btn-primary" onclick="editar();"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Editar</button>
+                </form>
+            </td>
+            <td>
+                <form method="post" action="Conferencia">
+                    <div class="form-group">
+                      <input type="hidden" class="form-control" id="action" name="action" value="eliminar">
+                    </div>   
+                <button type="submit" class="btn btn-primary" onclick="eliminar();"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Eliminar</button>
+                </form>
+            </td>
           </tr>
           <tr>
             <th scope="row">2</th>
@@ -91,10 +105,10 @@
                   <input type="text" class="form-control" id="inputFecha" name="inputCiudad" placeholder="Fecha de la conferencia">
                 </div>
                 <div class="form-group">
-                    <textarea class="form-control" rows="5" id="comment" placeholder="Algo que agregar..?"></textarea>
+                    <textarea class="form-control" rows="5" id="comment" name="comment" placeholder="Algo que agregar..?"></textarea>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" id="action" name="inputCiudad" placeholder="Fecha de la conferencia">
+                  <input type="hidden" class="form-control" id="action" name="action" value="agregar">
                 </div>
             </div>
             <div class="modal-footer">
@@ -105,8 +119,19 @@
         </div>
       </div>
     </div>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script>
+        function editar(){
+            
+            request.getAttribute("usuarios");
+        }
+        
+        function eliminar(){
+            
+        }
+        
+        
+    </script>
   </body>
 </html>

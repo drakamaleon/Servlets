@@ -32,16 +32,15 @@ public class ConferenciasServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-        request.getRequestDispatcher("home.jsp")
-                .forward(request, response);
-        }
+
         
         
         String action = request.getParameter("action");
         String nombre = request.getParameter("inputNombre");
         String fecha = request.getParameter("inputFecha");
         String desc = request.getParameter("comment");
+        System.out.println(action);
+        System.out.println(nombre + fecha + desc);
         if ("agregar".equals(action)){
             //
         }
@@ -50,6 +49,11 @@ public class ConferenciasServlet extends HttpServlet {
         }
         if ("eliminar".equals(action)){
             //
+        }
+        
+        try (PrintWriter out = response.getWriter()) {
+        request.getRequestDispatcher("home.jsp")
+                .forward(request, response);
         }
     }
 

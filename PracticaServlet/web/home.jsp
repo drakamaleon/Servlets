@@ -1,19 +1,17 @@
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="modelos.Conferencia"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Conferencias</title>
+
+    <title>Administrador de Proyectos</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <link rel="stylesheet" href="stylesheet/styles.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.12/datatables.min.css"/>
+    <link rel="stylesheet" href="stylesheets/styles.css">
   </head>
 
   <body>
@@ -55,36 +53,9 @@
             <th>Eliminar</th>
           </tr>
         </thead>
-        <% List<Conferencia> conferencias = (List<Conferencia>) request.getAttribute("conferencias");
-                int cont = 0;
-                SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
-                for (Conferencia con : conferencias) {
-                    
-        
-        %>
         <tbody>
-          <tr>
-            
-            <th scope="row"><%= ++cont%></th>
-            <td><%= con.getNombre() %></td>
-            <td><%= formatoDelTexto.format(con.getFecha()) %></td>
-            <td><%= con.getDescripcion() %></td>
-            <td style="display: none" ><%= con.getId() %></td>
-            <td>          
-                    
-                <button type="submit" class="btn btn-primary editar" ><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Editar</button>
-            </td>
-            <td>
-                <form method="post" action="Conferencia">
-                    <div class="form-group">
-                      <input type="hidden" class="form-control" id="action" name="action" value="eliminar">
-                    </div>   
-                <button type="submit" class="btn btn-primary" onclick="eliminar();"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Eliminar</button>
-                </form>
-            </td>
-          </tr>
-          <% } %>
-
+        
+          
         </tbody>
       </table>
     </div>
@@ -93,24 +64,24 @@
     <div class="modal fade" id="modalUsuarios" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <form action="Conferencia" method="post">
+          <form action="Usuarios" method="post">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               <h4 class="modal-title">Ingresar Usuario</h4>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="inputNombre" name="nombre" placeholder="Nombre de la conferencia">
+                  <input type="text" class="form-control" id="inputNombre" name="inputNombre" placeholder="Nombre">
                 </div>
                 <div class="form-group">
-                  <input type="date" class="form-control" id="inputFecha" name="fecha" placeholder="Fecha de la conferencia">
+                  <input type="email" class="form-control" id="inputApellido" name="inputEmail" placeholder="Email">
                 </div>
                 <div class="form-group">
-                    <textarea class="form-control" rows="5" id="comment" name="descripcion" placeholder="Algo que agregar..?"></textarea>
-                </div>
-                <div class="form-group">
-                  <input type="hidden" class="form-control" id="action" name="action" value="agregar">
-
+                  <select class="form-control" id="selectRol" name="selectRol">
+                    <option value="1">Desarrollador</option>
+                    <option value="2">DiseÃ±ador</option>
+                    <option value="3">Administrador</option>
+                  </select>
                 </div>
             </div>
             <div class="modal-footer">
@@ -122,12 +93,9 @@
       </div>
     </div>
 
-    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <script src="javascript/conferencia.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.12/datatables.min.js"></script>
-
     <script>
         $(document).ready(function() {
             $('#tablaUsuarios').DataTable({

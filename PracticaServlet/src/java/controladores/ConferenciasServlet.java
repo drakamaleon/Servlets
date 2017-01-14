@@ -7,19 +7,11 @@ package controladores;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import static javax.print.attribute.Size2DSyntax.MM;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelos.Conferencia;
 
 /**
  *
@@ -44,31 +36,20 @@ public class ConferenciasServlet extends HttpServlet {
         
         
         String action = request.getParameter("action");
-        
+        String nombre = request.getParameter("inputNombre");
+        String fecha = request.getParameter("inputFecha");
+        String desc = request.getParameter("comment");
         System.out.println(action);
-        
+        System.out.println(nombre + fecha + desc);
         if ("agregar".equals(action)){
-            SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
-            Date fecha;
-            String nombre = request.getParameter("nombre");
-            String descripcion = request.getParameter("descripcion");
-            try {
-                fecha = formatoDelTexto.parse(request.getParameter("fecha"));
-                Conferencia.insertar(nombre, descripcion, fecha  );
-            } catch (ParseException ex) {
-                Logger.getLogger(ConferenciasServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-            
+            //
         }
         if ("editar".equals(action)){
-            
+            //
         }
         if ("eliminar".equals(action)){
             //
         }
-        
-        request.setAttribute("conferencias", Conferencia.conferencias());
         
         try (PrintWriter out = response.getWriter()) {
         request.getRequestDispatcher("home.jsp")

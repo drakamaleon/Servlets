@@ -5,12 +5,10 @@
  */
 package modelos;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 
 public class Conferencia {
-    private static ArrayList<Conferencia> conferencias= new ArrayList();
     int id;
     String nombre;
     String descripcion;
@@ -22,14 +20,7 @@ public class Conferencia {
         this.descripcion = descripcion;
         this.fecha = fecha;
     }
-    public static boolean insertar(String nombre, String descripcion, Date fecha){
-        conferencias.add(new Conferencia(Conferencia.conferencias.size()+1,nombre,descripcion,fecha));
-        return true;
-    }
-    public static ArrayList<Conferencia> conferencias(){
-        //codigo de lecturas y generacion de arraylist de conferencias
-        return Conferencia.conferencias;
-    }
+
     public int getId() {
         return id;
     }

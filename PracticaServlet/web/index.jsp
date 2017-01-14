@@ -36,7 +36,7 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Inicio</a></li>
-            <li><a href="Conferencia">Conferencia</a></li>
+            <li><a href="#">Conferencia</a></li>
             <li><a href="#">Asistentes</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">

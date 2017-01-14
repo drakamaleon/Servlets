@@ -1,3 +1,6 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="modelos.Conferencia"%>
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -5,10 +8,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Registro Voluntarios</title>
+    <title>Conferencias</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-	<link rel="stylesheet" href="stylesheets/styles.css">
+	<link rel="stylesheet" href="stylesheet/styles.css">
   </head>
 
   <body>
@@ -45,19 +48,24 @@
             <th></th>
           </tr>
         </thead>
+        <% List<Conferencia> conferencias = (List<Conferencia>) request.getAttribute("conferencias");
+                int cont = 0;
+                SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
+                for (Conferencia con : conferencias) {
+                    
+        
+        %>
         <tbody>
           <tr>
-            <th scope="row">1</th>
-            <td>Juan Perez</td>
-            <td>Guayaquil</td>
-            <td>0987961212</td>
-            <td>
-                <form method="post" action="Conferencia">
-                    <div class="form-group">
-                      <input type="hidden" class="form-control" id="action" name="action" value="editar">
-                    </div>   
-                <button type="submit" class="btn btn-primary" onclick="editar();"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Editar</button>
-                </form>
+            
+            <th scope="row"><%= ++cont%></th>
+            <td><%= con.getNombre() %></td>
+            <td><%= formatoDelTexto.format(con.getFecha()) %></td>
+            <td><%= con.getDescripcion() %></td>
+            <td style="display: none" ><%= con.getId() %></td>
+            <td>          
+                    
+                <button type="submit" class="btn btn-primary editar" ><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Editar</button>
             </td>
             <td>
                 <form method="post" action="Conferencia">
@@ -68,22 +76,7 @@
                 </form>
             </td>
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Rodrigo Segovia</td>
-            <td>Quito</td>
-            <td>0978989891</td>
-            <td>28</td>
-            <td>28</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Jose Sanchez</td>
-            <td>Guayaquil</td>
-            <td>0912322321</td>
-            <td>editar</td>
-            <td>elimnar</td>
-          </tr>
+          <% } %>
         </tbody>
       </table>
     </div>
@@ -99,13 +92,13 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="inputNombre" name="inputNombre" placeholder="Nombre de la conferencia">
+                  <input type="text" class="form-control" id="inputNombre" name="nombre" placeholder="Nombre de la conferencia">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" id="inputFecha" name="inputCiudad" placeholder="Fecha de la conferencia">
+                  <input type="date" class="form-control" id="inputFecha" name="fecha" placeholder="Fecha de la conferencia">
                 </div>
                 <div class="form-group">
-                    <textarea class="form-control" rows="5" id="comment" name="comment" placeholder="Algo que agregar..?"></textarea>
+                    <textarea class="form-control" rows="5" id="comment" name="descripcion" placeholder="Algo que agregar..?"></textarea>
                 </div>
                 <div class="form-group">
                   <input type="hidden" class="form-control" id="action" name="action" value="agregar">
@@ -119,8 +112,10 @@
         </div>
       </div>
     </div>
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="javascript/conferencia.js"></script>
     <script>
         function editar(){
             

@@ -30,31 +30,30 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Usuarios</a></li>
-            <li><a href="#">Proyectos</a></li>
-            <li><a href="#">Dashboard</a></li>
+            <li ><a href="index.jsp">Inicio</a></li>
+            <li class="active"><a href="Conferencia">Conferencias</a></li>
+            <li><a href="#">Asistentes</a></li>
           </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#about"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></li>
-            <li><a href="#">Logout</a></li>
-          </ul>
+          
         </div><!--/.nav-collapse -->
       </div>
     </nav>
     <div class="container usuarios">
-      <h2>Registro de Usuarios</h2>
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalUsuarios">Agregar Usuario</button>
+      <h2>Registro de Conferencias</h2>
+      <button type="button" class="btn btn-primary agregar" data-toggle="modal" data-target="#modalUsuarios">Agregar Conferencia</button>
       <table id="tablaUsuarios" class="table table-bordered table-striped">
         <thead>
           <tr>
             <th>#</th>
             <th>Nombre</th>
-            <th>Email</th>
-            <th>Rol</th>
-            <th>Editar</th>
-            <th>Eliminar</th>
+            <th>Fecha</th>
+            <th>Descripcion</th>
+            
+            <th></th>
+            <th></th>
           </tr>
         </thead>
+        <tbody>
         <% List<Conferencia> conferencias = (List<Conferencia>) request.getAttribute("conferencias");
                 int cont = 0;
                 SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
@@ -62,7 +61,7 @@
                     
         
         %>
-        <tbody>
+        
           <tr>
             
             <th scope="row"><%= ++cont%></th>
@@ -72,14 +71,16 @@
             <td style="display: none" ><%= con.getId() %></td>
             <td>          
                     
-                <button type="submit" class="btn btn-primary editar" ><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Editar</button>
+                <button type="button" class="btn btn-primary editar" data-toggle="modal" data-target="#modalUsuarios" ><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Editar</button>
             </td>
             <td>
                 <form method="post" action="Conferencia">
-                    <div class="form-group">
-                      <input type="hidden" class="form-control" id="action" name="action" value="eliminar">
-                    </div>   
-                <button type="submit" class="btn btn-primary" onclick="eliminar();"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Eliminar</button>
+                <div class="form-group">
+                 <input type="hidden" class="form-control" id="actionEl" name="action" value="eliminar">
+                 <input type="hidden" class="form-control id"  name="id" value="">
+                 <button type="submit" class="btn btn-primary eliminar" ><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Eliminar</button>
+                </div>
+                
                 </form>
             </td>
           </tr>
@@ -112,6 +113,10 @@
                   <input type="hidden" class="form-control" id="action" name="action" value="agregar">
 
                 </div>
+                <div class="form-group">
+                  <input type="hidden" class="form-control" id="id" name="id" value="">
+
+                </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -132,7 +137,7 @@
         $(document).ready(function() {
             $('#tablaUsuarios').DataTable({
                 "language": {
-                    url: 'i18n/dt-spanish.json'
+                    url: 'i8/dt-spanish.json'
                 },
                 "aoColumnDefs": [
                     { 'bSortable': false, 'aTargets': [ 4, 5 ] }

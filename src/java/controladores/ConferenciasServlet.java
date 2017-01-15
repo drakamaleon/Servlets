@@ -62,10 +62,20 @@ public class ConferenciasServlet extends HttpServlet {
             
         }
         if ("editar".equals(action)){
-            
+            SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
+            Date fecha;
+            String nombre = request.getParameter("nombre");
+            String descripcion = request.getParameter("descripcion");
+            int id = Integer.parseInt(request.getParameter("id"));
+            try {
+                fecha = formatoDelTexto.parse(request.getParameter("fecha"));
+                Conferencia.editar(id,nombre, descripcion, fecha  );
+            } catch (ParseException ex) {
+                Logger.getLogger(ConferenciasServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if ("eliminar".equals(action)){
-            //
+            Conferencia.eliminar(Integer.parseInt(request.getParameter("id")));
         }
         
         request.setAttribute("conferencias", Conferencia.conferencias());

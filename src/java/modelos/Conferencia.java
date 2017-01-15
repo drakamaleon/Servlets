@@ -22,8 +22,31 @@ public class Conferencia {
         this.descripcion = descripcion;
         this.fecha = fecha;
     }
+    public static boolean eliminar(int id){
+        
+        int i = 0;
+        for(Conferencia c: conferencias){
+            i++;
+            if(c.id==id){
+                break;
+            }
+        }
+        i--;
+        conferencias.remove(i);
+        return true;
+    }
     public static boolean insertar(String nombre, String descripcion, Date fecha){
         conferencias.add(new Conferencia(Conferencia.conferencias.size()+1,nombre,descripcion,fecha));
+        return true;
+    }
+    public static boolean editar(int id,String nombre, String descripcion, Date fecha){
+        for(Conferencia c: conferencias){
+            if(c.id==id){
+                c.descripcion=descripcion;
+                c.nombre = nombre;
+                c.fecha = fecha;
+            }
+        }
         return true;
     }
     public static ArrayList<Conferencia> conferencias(){
